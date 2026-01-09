@@ -1,4 +1,5 @@
 "use client";
+import Divider from "@/components/Divider";
 import { JetBrains_Mono } from "next/font/google";
 
 
@@ -75,7 +76,7 @@ export default function CreatingPasskeyEnabledWallets() {
         <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
           <code
             lang="shell code-1"
-            className={`${jetbrainsMono.variable} text-sm`}
+            className={`${jetbrainsMono.variable} md:text-sm text-[11px]`}
           >
             npx create-next-app@latest passkey_build
           </code>
@@ -83,12 +84,14 @@ export default function CreatingPasskeyEnabledWallets() {
         <p>
           This will create a new nextjs project in that folder upon completion{" "}
         </p>
-        <div className="mt-8">
+        {/* <h3 className="w-full border border-gray-300 my-5"></h3> */}
+        <Divider/>
+        <div className="mt-3">
           <h4 className="mb-3">Install Dependencies : </h4>
           <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
             <code
               lang="shell code-1"
-              className={`${jetbrainsMono.variable} text-sm`}
+              className={`${jetbrainsMono.variable} md:text-sm text-[11px]`}
             >
               cd passkey_build
               <br />
@@ -105,7 +108,7 @@ export default function CreatingPasskeyEnabledWallets() {
             <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
               <code
                 lang="shell code-1"
-                className={`${jetbrainsMono.variable} text-sm`}
+                className={`${jetbrainsMono.variable} md:text-sm text-[11px]`}
               >
                 code passkey_build
               </code>
@@ -116,7 +119,7 @@ export default function CreatingPasskeyEnabledWallets() {
             <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
               <code
                 lang="shell code-1"
-                className={`${jetbrainsMono.variable} text-sm`}
+                className={`${jetbrainsMono.variable} md:text-sm text-[11px]`}
               >
                 zed passkey_build
               </code>
@@ -127,7 +130,7 @@ export default function CreatingPasskeyEnabledWallets() {
             <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
               <code
                 lang="shell code-1"
-                className={`${jetbrainsMono.variable} text-sm`}
+                className={`${jetbrainsMono.variable} md:text-sm text-[11px]`}
               >
                 cursor passkey_build
               </code>
@@ -141,8 +144,8 @@ export default function CreatingPasskeyEnabledWallets() {
             functionality simply replace the contents of your layout.tsx with
             this
           </p>
-          <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
-            <pre className={`${jetbrainsMono.variable} text-sm`}>
+          <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-5">
+            <pre className={`${jetbrainsMono.variable} md:text-sm text-[11px]`}>
               {`"use client";
 
 import { LazorkitProvider } from "@lazorkit/wallet";
@@ -178,6 +181,7 @@ export default function RootLayout({
             </pre>
           </div>
           <div>
+            <Divider/>
             <h6 className="text-2xl mb-2">
               Adding Wallet Connection Functionality
             </h6>
@@ -194,7 +198,7 @@ export default function RootLayout({
             </p>
             <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
               <pre
-                className={`whitespace-pre overflow-x-auto text-sm ${jetbrainsMono.variable} scroll-smooth`}
+                className={`whitespace-pre overflow-hidden md:text-sm text-[11px] ${jetbrainsMono.variable} scroll-smooth`}
               >
                 {`"use client";
 
@@ -228,15 +232,17 @@ export default function WalletConnect() {
 `}
               </pre>
             </div>
-            <p>
+            <p className="mb-2">
               For simplicity's sake you can view your newly created wallet
               address by simply calling the "smartWalletPubkey" from the
               useWallet() hook <br className="mt-1" />
-              Example Component:
+            </p>
+            <p className="mb-2">
+            Example Component:
             </p>
             <div className="bg-[#080807c4] text-white px-3 py-3 rounded-sm mb-2.5">
             <pre
-              className={`whitespace-pre overflow-x-auto text-sm ${jetbrainsMono.variable}`}
+              className={`whitespace-pre overflow-hidden wrap-break-word md:text-sm text-[11px] ${jetbrainsMono.variable}`}
             >
               {`
 import { useWallet } from "@lazorkit/wallet";

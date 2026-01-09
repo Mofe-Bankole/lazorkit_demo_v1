@@ -80,9 +80,9 @@ export default function Dashboard() {
       setTxError("");
 
       const recipientPubkey = new PublicKey(recipient);
-      const amountInLamports = parseFloat(amount) * LAMPORTS_PER_SOL;
+      const lamports = parseFloat(amount) * LAMPORTS_PER_SOL;
 
-      if (isNaN(amountInLamports) || amountInLamports <= 0) {
+      if (isNaN(lamports) || lamports <= 0) {
         setTxError("Invalid amount");
         setTxStatus("error");
         return;
@@ -91,13 +91,13 @@ export default function Dashboard() {
       const instruction = SystemProgram.transfer({
         fromPubkey: smartWalletPubkey,
         toPubkey: recipientPubkey,
-        lamports: amountInLamports,
+        lamports,
       });
 
       const signature = await signAndSendTransaction({
         instructions: [instruction],
         transactionOptions: {
-          feeToken: "USDC",
+          clusterSimulation : 'devnet'
         },
       });
 
