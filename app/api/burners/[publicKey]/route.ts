@@ -1,28 +1,24 @@
 import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
-type RouteParams = {
-  params: {
-    publicKey: string;
-  };
-};
-
 export async function DELETE(
   request: NextRequest,
-  { params }: RouteParams
+  { params }: { params: { publicKey: string } }
 ) {
   try {
-    const parameters = await params;
-    const publicKey = decodeURIComponent(parameters.publicKey);
-    const deleted = db.deleteBurnerWallet(publicKey);
-    
+    // ✅ params is synchronous
+    const { publicKey } = params;
+    const decodedPublicKey = decodeURIComponent(publicKey);
+
+    const deleted = db.deleteBurnerWallet(decodedPublicKey);
+
     if (!deleted) {
       return NextResponse.json(
         { success: false, error: "Burner wallet not found" },
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json(
       { success: true, message: "Burner wallet deleted successfully" },
       { status: 200 }
@@ -35,4 +31,3 @@ export async function DELETE(
     );
   }
 }
-
