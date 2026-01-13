@@ -7,11 +7,12 @@ import {
   SystemProgram,
 } from "@solana/web3.js";
 import { useWallet } from "@lazorkit/wallet";
-import React, { useEffect, useState } from "react";
-import { getAssociatedTokenAddress } from "@solana/spl-token";
+import React, { useState } from "react";
 import config from "@/lib/config";
 import AddressButton from "@/components/AddressButton";
-import { SOLANA_DEVNET_RPC, USDC_MINT } from "@/lib/constants";
+import { SOLANA_DEVNET_RPC } from "@/lib/constants";
+import useBalance from "../hooks/useBalances";
+import Divider from "@/components/Divider";
 
 export default function Dashboard() {
   // Connect app to the Solana Devnet (devnet for now)
@@ -22,53 +23,20 @@ export default function Dashboard() {
 
   const { signAndSendTransaction, isSigning, smartWalletPubkey, isConnected } =
     useWallet();
-  const [loadingBalances, setLoadingBalances] = React.useState(false);
+  const { fetchBalances , SolBalance, UsdcBalance, loading } = useBalance(isConnected ? smartWalletPubkey : null)
   const [recipient, setRecipient] = React.useState<string>("");
   const [amount, setAmount] = React.useState<string>("");
-  const [solBalance, setSolBalance] = React.useState<number>(0);
-  const [usdcBalance, setUsdcBalance] = React.useState<number | null>(null);
   const [txnsig, setTxnSig] = useState("")
   const [txStatus, setTxStatus] = React.useState<"idle" | "success" | "error">(
     "idle"
   );
   const [txError, setTxError] = React.useState<string>("");
 
-  // Fetches the users SOL and USDC balances respectively
-  const fetchUserBalances = async () => {
-    if (!smartWalletPubkey) {
-      return;
-    }
-
-    setLoadingBalances(true);
-
-    try {
-      const lamports = await connection.getBalance(smartWalletPubkey);
-      setSolBalance(lamports / LAMPORTS_PER_SOL);
-      try {
-        const token_address = await getAssociatedTokenAddress(
-          USDC_MINT,
-          smartWalletPubkey
-        );
-        const balance = await connection.getTokenAccountBalance(token_address);
-        setUsdcBalance(Number(balance.value.amount));
-      } catch (error) {
-        setUsdcBalance(0);
-      }
-    } catch (error) {
-      setSolBalance(0);
-    }
-    setLoadingBalances(false);
-  };
-
-  useEffect(() => {
-    fetchUserBalances();
-  }, [smartWalletPubkey]);
-
   // Function to handle sending transactions
   const handleTransaction = async () => {
     if (!smartWalletPubkey || !recipient || !amount) return;
 
-    if (Number(amount) > solBalance) {
+    if (Number(amount) > Number(SolBalance)) {
       setTxError("Balance is less than Sending Amount");
       setTxStatus("idle");
       return;
@@ -105,7 +73,7 @@ export default function Dashboard() {
         setRecipient("");
         setAmount("");
 
-        await fetchUserBalances();
+        await fetchBalances()
       }
       setTxnSig(signature);
       alert(`Transaction Confirmed : ${signature}`);
@@ -152,15 +120,15 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           <div
             className="border border-gray-300 p-4 cursor-pointer"
-            onClick={fetchUserBalances}
+            onClick={fetchBalances}
           >
             <div className="">
               <div className="text-xs text-gray-500 mb-1">SOL</div>
               <div className="text-lg font-medium">
-                {loadingBalances ? (
+                {loading ? (
                   <span className="text-gray-400">--</span>
                 ) : (
-                  `${solBalance?.toFixed(4) || "0.0000"} SOL`
+                  `${SolBalance?.toFixed(4) || "0.0000"} SOL`
                 )}
               </div>
               <div></div>
@@ -168,15 +136,15 @@ export default function Dashboard() {
           </div>
           <div
             className="border border-gray-300 p-4 cursor-pointer relative"
-            onClick={fetchUserBalances}
+            onClick={fetchBalances}
           >
             {/* <div className="absolute top-0 right-0 w-6 h-6 bg-gray-300   "></div> */}
             <div className="text-xs text-gray-500 mb-1">USDC</div>
             <div className="text-lg font-medium">
-              {loadingBalances ? (
+              {loading ? (
                 <span className="text-gray-400">--</span>
               ) : (
-                `${usdcBalance?.toFixed(2) || "0.00"} USDC`
+                `${UsdcBalance?.toFixed(2) || "0.00"} USDC`
               )}
             </div>
           </div>
@@ -203,18 +171,27 @@ export default function Dashboard() {
               <h6 className="mb-3 ">
                 Gasless Transfers
               </h6>
-              <p className="text-sm text-gray-500">Swap Tokens on Raydium Devnet</p>
+              <p className="text-sm text-gray-500">Send SOL but without paying gas fees 👌</p>
             </div>
           </a>
         </div>
-        <h3 className="text-2xl">Integration Guides</h3>
+        <Divider/>
+        <h3 className="text-xl mt-1">Integration Guides</h3>
         <div className="mt-2.5 md:grid md:grid-cols-3 grid-rows-1 items-center gap-1 mb-2">
-          <a className="cursor-pointer rounded-sm border border-gray-300 text-black" href="/guides/creatng-wallets">
+          <a className="cursor-pointer rounded-sm border border-gray-300 text-black" href="/guides/creating-wallets">
             <div className="py-2 px-3.5 cursor-pointer relative flex flex-col mb-1.5">
               <h6 className="mb-3 ">
                 Creating Passkey-Based Wallets with Lazorkit
               </h6>
-              <p className="text-sm text-gray-500">Temporary wallets for frictionless onboarding </p>
+              <p className="text-sm text-gray-500">Learn how to add Lazorkit wallets to your app</p>
+            </div>
+          </a>
+          <a className="cursor-pointer rounded-sm border border-gray-300 text-black" href="/guides/triggering-gasless-txns">
+            <div className="py-2 px-3.5 cursor-pointer relative flex flex-col mb-1.5">
+              <h6 className="mb-3 ">
+                Triggering Gasless Transactions sponsored by Kora
+              </h6>
+              <p className="text-sm text-gray-500">Gasless Transactions are just the beginning... </p>
             </div>
           </a>
         </div>
@@ -260,7 +237,7 @@ export default function Dashboard() {
           <button
             className="w-full py-2 bg-black text-white text-sm font-medium hover:bg-gray-800 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed cursor-pointer"
             onClick={handleTransaction}
-            disabled={!recipient || !amount || isSigning || loadingBalances}
+            disabled={!recipient || !amount || isSigning || loading}
           >
             {isSigning ? "Sending..." : "Send ✈️"}
           </button>

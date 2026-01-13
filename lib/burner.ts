@@ -1,19 +1,6 @@
 import { Keypair } from "@solana/web3.js";
 import { db } from "./db";
-
-export type BurnerWalletProps = {
-    name : string;
-    owner : string;
-}
-
-export type BurnerWallet = {
-    name : string;
-    owner : string;
-    publicKey : string;
-    secretKey : number[];
-    createdAt : number;
-    expiresAt : number;
-}
+import { BurnerWalletProps , BurnerWallet } from "./types";
 
 
 export function createBurnerWallet(props : BurnerWalletProps){

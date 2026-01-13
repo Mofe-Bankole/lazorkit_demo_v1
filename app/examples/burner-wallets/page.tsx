@@ -155,7 +155,7 @@ export default function BurnerWalletPage() {
                                         >
                                             Copy address
                                         </button>
-                                        <button className="cursor-pointer flex-1 border border-gray-300 font-semibold rounded px-3 py-2 text-sm hover:bg-gray-100 transition">
+                                        <button className="cursor-pointer flex-1 border border-gray-300 font-semibold rounded px-3 py-2 text-sm hover:bg-gray-200 transition">
                                             Sweep to Main
                                         </button>
                                         <button
@@ -178,7 +178,7 @@ export default function BurnerWalletPage() {
                             ))}
                         </div>
                     ) : (
-                        <div className="mt-6 border border-gray-200 rounded-sm px-4 py-6 text-center text-sm text-gray-500">
+                        <div className="mt-7 border border-gray-300 rounded-sm px-4 py-6 text-center text-sm text-gray-500">
                             <div className="flex flex-col text-center">
                                 <X className="text-5xl mb-6 w-1/2 mx-auto" ></X>
                                 <p className="mb-2 mt-2">No burner wallets yet.</p>

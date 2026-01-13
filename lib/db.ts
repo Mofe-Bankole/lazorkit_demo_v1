@@ -1,15 +1,4 @@
-// lib/db.ts
-import type { BurnerWallet } from './burner';
-
-export type Subscription = {
-  id: string;
-  owner: string; 
-  plan: string;
-  status: 'active' | 'cancelled' | 'expired' | 'pending';
-  amount: number;
-  createdAt : number;
-  currency: string;
-};
+import { BurnerWallet, Subscription } from "./types";
 
 // In-memory stores
 class LazitDB {

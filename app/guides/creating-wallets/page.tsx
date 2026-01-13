@@ -266,7 +266,7 @@ export default function AddressButton(){
           </div>
           <p className="mb-2.5">And there u have it you can now create a passkey-based wallet
           we can now use this wallet to make transactions</p>
-          <p>We can now move to </p>
+          <p>We can now move to <a href="/guides/triggering-gasless-txns" className="text-blue-700" target="_blank">Triggering Gasless Transactions sponsored by Kora</a></p>
         </div>
         </div>
       </div>

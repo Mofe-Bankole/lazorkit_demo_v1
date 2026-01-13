@@ -1,14 +1,8 @@
 "use client";
 import { useState, FormEvent } from "react";
 import axios from "axios";
-import type { BurnerWallet } from "@/lib/burner";
+import { BurnerModalProps } from "@/lib/types";
 
-export interface BurnerModalProps {
-  owner : string;
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit?: (wallet: BurnerWallet) => void;
-}
 
 export default function BurnerModal({
   isOpen,
