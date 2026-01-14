@@ -1,5 +1,5 @@
-"use client";
-import WalletConnect from "@/components/WalletConnect";
+ "use client";
+import WalletConnect from "../components/WalletConnect";
 import { useWallet } from "@lazorkit/wallet";
 import Link from "next/link";
 

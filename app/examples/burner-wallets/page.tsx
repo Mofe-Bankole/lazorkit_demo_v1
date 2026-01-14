@@ -1,10 +1,8 @@
 'use client'
-import BurnerModal from "@/components/BurnerModal";
-import ConnectionButton from "@/components/ConnectionButton";
-import WalletConnect from "@/components/WalletConnect";
-import WalletHeader from "@/components/WalletHeader";
-import { copyToClipboard } from "@/lib/clipboard";
-import { BurnerWallet } from "@/lib/types";
+import BurnerModal from "../../../components/BurnerModal";
+import ConnectionButton from "../../../components/ConnectionButton";
+import WalletHeader from "../../../components/WalletHeader";
+import { BurnerWallet } from "../../../lib/types";
 import { useWallet } from "@lazorkit/wallet";
 import axios from "axios";
 import { X } from "lucide-react";

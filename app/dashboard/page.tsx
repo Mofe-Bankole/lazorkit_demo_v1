@@ -1,5 +1,5 @@
 "use client";
-import WalletHeader from "@/components/WalletHeader";
+import WalletHeader from "../../components/WalletHeader";
 import {
   Connection,
   LAMPORTS_PER_SOL,
@@ -8,12 +8,13 @@ import {
 } from "@solana/web3.js";
 import { useWallet } from "@lazorkit/wallet";
 import React, { useState } from "react";
-import config from "@/lib/config";
-import AddressButton from "@/components/AddressButton";
-import { SOLANA_DEVNET_RPC } from "@/lib/constants";
-import useBalance from "../../hooks/useBalances";
-import Divider from "@/components/Divider";
-import { useTransfer } from "../../hooks/useTransfer";
+import config from "../../lib/config";
+import AddressButton from "../../components/AddressButton";
+import { SOLANA_DEVNET_RPC } from "../../lib/constants";
+// import {useBalance} from "../hooks/useBalances";
+import Divider from "../../components/Divider";
+import { useBalance } from "@/hooks/useBalances"
+import { useTransfer } from "@/hooks/useTransfer";
 
 export default function Dashboard() {
   // Connect app to the Solana Devnet (devnet for now)

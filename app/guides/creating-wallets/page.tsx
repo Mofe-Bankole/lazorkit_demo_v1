@@ -1,5 +1,5 @@
 "use client";
-import Divider from "@/components/Divider";
+import Divider from "../../../components/Divider";
 import { JetBrains_Mono } from "next/font/google";
 
 

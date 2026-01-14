@@ -1,4 +1,4 @@
-import { copyToClipboard } from "@/lib/clipboard";
+import { copyToClipboard } from "../lib/clipboard";
 import { useWallet } from "@lazorkit/wallet";
 
 // For simplicitys sake , clicking on this header copies the address to the clipboard

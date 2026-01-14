@@ -3,7 +3,7 @@
 import { JetBrains_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import { LazorkitProvider } from "@lazorkit/wallet";
-import config from "@/lib/config";
+import config from "../lib/config";
 
 const outfit = Outfit({
   weight: ["400", "500", "600", "700"],

@@ -1,8 +1,8 @@
 import { Connection, LAMPORTS_PER_SOL, PublicKey, TransactionInstruction } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID as SPL_TOKEN_PROGRAM_ID, createTransferInstruction, getAssociatedTokenAddressSync } from '@solana/spl-token';
 import {useWallet} from "@lazorkit/wallet"
-import config from '@/lib/config';
-import { SOLANA_DEVNET_RPC, USDC_MINT } from '@/lib/constants';
+import config from './config';
+import { SOLANA_DEVNET_RPC, USDC_MINT } from './constants';
 
 export function createConnection(){
     return new Connection(config.SOLANA_RPC_URL || SOLANA_DEVNET_RPC , "confirmed")

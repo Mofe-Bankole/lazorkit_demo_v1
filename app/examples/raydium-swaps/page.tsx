@@ -1,9 +1,9 @@
 "use client"
-import Divider from "@/components/Divider"
+import Divider from "../../../components/Divider"
 import { DEV_API_URLS } from '@raydium-io/raydium-sdk-v2';
-import WalletHeader from "@/components/WalletHeader"
-import config from "@/lib/config"
-import { SOLANA_DEVNET_RPC } from "@/lib/constants"
+import WalletHeader from "../../../components/WalletHeader"
+import config from "../../../lib/config"
+import { SOLANA_DEVNET_RPC } from "../../../lib/constants"
 import { Connection, useWallet } from "@lazorkit/wallet"
 import React, { useEffect, useState } from "react"
 import axios from "axios";

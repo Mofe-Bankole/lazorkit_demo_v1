@@ -1,4 +1,4 @@
-import WalletHeader from "@/components/WalletHeader";
+import WalletHeader from "../../components/WalletHeader";
 
 export default function Examples() {
     return (

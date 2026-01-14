@@ -1,7 +1,7 @@
 "use client";
 import { useState, FormEvent } from "react";
 import axios from "axios";
-import { BurnerModalProps } from "@/lib/types";
+import { BurnerModalProps } from "../lib/types";
 
 
 export default function BurnerModal({

@@ -1,8 +1,8 @@
 "use client";
-import useBalance from "@/hooks/useBalances"
-import WalletHeader from "@/components/WalletHeader"
-import config from "@/lib/config"
-import { SOLANA_DEVNET_RPC } from "@/lib/constants"
+import useBalance from "@/hooks/useBalances";
+import WalletHeader from "../../../components/WalletHeader";
+import config from "../../../lib/config";
+import { SOLANA_DEVNET_RPC } from "../../../lib/constants";
 import { useWallet } from "@lazorkit/wallet"
 import { Connection } from "@solana/web3.js"
 import { X } from "lucide-react";
