@@ -1,19 +1,61 @@
 'use client'
+import useBalance from "@/hooks/useBalances";
 import BurnerModal from "../../../components/BurnerModal";
 import ConnectionButton from "../../../components/ConnectionButton";
 import WalletHeader from "../../../components/WalletHeader";
 import { BurnerWallet } from "../../../lib/types";
-import { useWallet } from "@lazorkit/wallet";
+import { PublicKey, useWallet } from "@lazorkit/wallet";
 import axios from "axios";
-import { X } from "lucide-react";
+import { RefreshCw, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import useTransfer from "@/hooks/useTransfer";
+
+function BurnerBalance({ publicKey }: { publicKey: string }) {
+    const {smartWalletPubkey} = useWallet();
+    const { SolBalance, loading, fetchBalances, error } = useBalance(
+        publicKey ? new PublicKey(publicKey) : null
+    );
+
+    // Fetch on mount
+    useEffect(() => {
+        if (publicKey) {
+            fetchBalances();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [publicKey]);
+
+    return (
+        <span className="text-xl font-mono flex" onClick={fetchBalances} style={{ cursor: "pointer" }}>
+            {loading ? (
+                <span className="text-xs text-gray-400">Fetching...</span>
+            ) : error ? (
+                <span className="text-xs text-red-400">Err</span>
+            ) : typeof SolBalance === "number" && SolBalance !== null ? (
+                SolBalance.toFixed(4)
+            ) : (
+                "0.0000"
+            )}
+        </span>
+    );
+}
+
+function handleSweep({ recipient , sender , amount }: { recipient: string , sender : string , amount : string }){
+    const { explorerUrl , handleTransactions , beneficiary , status } = useTransfer({recipient , sender , amount });
+    handleTransactions()
+    
+    if (status === "success"){
+        return "success"
+    }else{
+        return "failure"
+    }
+}
 
 export default function BurnerWalletPage() {
-    const {smartWalletPubkey , isConnected} = useWallet();
+    const { smartWalletPubkey, isConnected } = useWallet();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [wallets, setWallets] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [owner , setOwner] = useState("");
+    const [owner, setOwner] = useState("");
 
     async function fetchUsersBurners() {
         setLoading(true);
@@ -140,7 +182,7 @@ export default function BurnerWalletPage() {
                                         <div className="text-right">
                                             <div className="text-xs text-gray-400">Balance</div>
                                             <div className="flex items-baseline justify-end gap-1">
-                                                <span className="text-xl font-mono">0.00</span>
+                                                <BurnerBalance publicKey={wallet.publicKey} />
                                                 <span className="text-xs text-gray-500">SOL</span>
                                             </div>
                                         </div>
@@ -149,7 +191,7 @@ export default function BurnerWalletPage() {
                                     <div className="mt-4 flex flex-col sm:flex-row gap-2">
                                         <button
                                             className="cursor-pointer flex-1 border border-gray-300 font-semibold rounded px-3 py-2 text-sm hover:bg-gray-100 transition"
-                                            onClick={() => copyToClipboard(wallet.publicKey)}
+                                            onClick={() => copyToClipboard(wallet.secretKey.toString())}
                                         >
                                             Copy address
                                         </button>

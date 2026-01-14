@@ -44,6 +44,13 @@ export interface TransactionProps{
     amount : string | null;
 }
 
+export interface BurnerTransferProps{
+    recipient : string | null;
+    signingKey : Uint8Array;
+    sender : string | null ;
+    amount : string | null;
+}
+
 export interface Transaction{
     recipient : string | null;
     sender : string | null;

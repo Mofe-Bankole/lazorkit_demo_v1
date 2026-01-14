@@ -40,10 +40,10 @@ export async function POST(request: NextRequest) {
     });
     
     // Don't send secretKey to client for security
-    const { secretKey, ...safeWallet } = wallet;
+    // const { secretKey, ...safeWallet } = wallet;
     
     return NextResponse.json(
-      { success: true, wallet: safeWallet, timestamp: Date.now() },
+      { success: true, wallet: wallet, timestamp: Date.now() },
       { status: 201 }
     );
   } catch (error) {

@@ -65,6 +65,9 @@ export function useTransfer(props: TransactionProps) {
           signature,
           solscanurl: `https://solscan.io/tx/${signature}?cluster=devnet`,
         });
+        console.log(signature);
+        alert(transaction.solscanurl)
+        console.log(transaction.solscanurl);
       }
     } catch (error) {
       console.error(error);

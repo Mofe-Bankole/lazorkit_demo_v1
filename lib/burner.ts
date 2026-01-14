@@ -15,7 +15,6 @@ export function createBurnerWallet(props : BurnerWalletProps){
         createdAt : Date.now(),
         expiresAt : Date.now() + 60 * 60 * 1000
     }
-
     db.createBurnerWallet(req)
 
     return req

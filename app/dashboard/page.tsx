@@ -187,10 +187,10 @@ export default function Dashboard() {
           >
             {status === "pending" ? "Sending..." : "Send"}
           </button>
-
+              
           {txStatus === "success" && (
             <div className="mt-5 text-sm text-center text-green-600">
-              Transaction Successful :   <p>  {status === "success" ? `View Transaction : ` : ""}  {status === "success" ? <a href={explorerUrl as string} className="cursor-pointer">{explorerUrl as string}</a> : ""}</p>
+              Transaction Successful :  <p> {status === "success" ? `View Transaction : ` : ""}  {status === "success" ? <a href={explorerUrl as string} className="cursor-pointer">{explorerUrl as string}</a> : ""}</p>
             </div>
           )}
           {txStatus === "error" && (
