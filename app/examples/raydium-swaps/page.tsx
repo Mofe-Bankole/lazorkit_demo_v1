@@ -196,7 +196,8 @@ export default function Raydium() {
                             <p>If SOL - USDC doesnt work try USDC - SOL , raydium devnet is very tricky</p>
 
                         </div>
-                        {/* RIGHT: SWAP FORM SECTION */}
+                        
+                        {/* SWAP FORM SECTION */}
                         <form
                             className="md:w-1/2 py-3 px-4 border border-gray-300 w-full mx-auto space-y-6 rounded-sm"
                             onSubmit={e => {

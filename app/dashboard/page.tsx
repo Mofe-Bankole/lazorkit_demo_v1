@@ -28,7 +28,7 @@ export default function Dashboard() {
 
 
   return (
-    <div className="min-h-screen bg-white text-black relative ">
+    <div className="min-h-screen bg-white text-black">
       <WalletHeader />
 
       <div className="max-w-5xl mx-auto px-4 py-8">
@@ -83,16 +83,16 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="mt-2.5 md:grid md:grid-cols-3 grid-rows-1 items-center gap-1 mb-2">
-          <a className="cursor-pointer rounded-sm border border-gray-300 text-black" href="/examples/burner-wallets">
-            <div className="py-2 px-3.5 cursor-pointer relative flex flex-col mb-1.5">
+        <div className="mt-2.5 flex flex-col md:space-y-0 space-y-2 justify-center md:grid md:grid-cols-3 md:gap-1 mb-2">
+          <a className="cursor-pointer rounded-sm border border-slate-300 text-black" href="/examples/burner-wallets">
+            <div className="py-2 px-3.5 cursor-pointer flex flex-col mb-1.5">
               <h6 className="mb-3 ">
                 Burner Wallets
               </h6>
               <p className="text-sm text-gray-500">Temporary wallets for frictionless onboarding </p>
             </div>
           </a>
-          <a className="cursor-pointer rounded-sm border border-gray-300 text-black" href="/examples/raydium-swaps">
+          <a className="cursor-pointer rounded-sm border border-slate-300 text-black" href="/examples/raydium-swaps">
             <div className="py-2 px-3.5 cursor-pointer relative flex flex-col mb-1.5">
               <h6 className="mb-3 ">
                 Raydium Swaps
@@ -100,7 +100,7 @@ export default function Dashboard() {
               <p className="text-sm text-gray-500">Swap Tokens on Raydium Devnet</p>
             </div>
           </a>
-          <a className="cursor-pointer rounded-sm border border-gray-300 text-black" href="/examples/gasless-by-kora">
+          <a className="cursor-pointer rounded-sm border border-slate-300 text-black" href="/examples/gasless-by-kora">
             <div className="py-2 px-3.5 cursor-pointer relative flex flex-col mb-1.5">
               <h6 className="mb-3 ">
                 Gasless Transfers
@@ -111,7 +111,7 @@ export default function Dashboard() {
         </div>
         <Divider />
         <h3 className="text-xl mt-1">Integration Guides</h3>
-        <div className="mt-2.5 md:grid md:grid-cols-3 grid-rows-1 items-center gap-1 mb-2">
+        <div className="mt-2.5 flex flex-col md:space-y-0 space-y-2 justify-center md:grid md:grid-cols-3 md:gap-1 mb-2">
           <a className="cursor-pointer rounded-sm border border-gray-300 text-black" href="/guides/creating-wallets">
             <div className="py-2 px-3.5 cursor-pointer relative flex flex-col mb-1.5">
               <h6 className="mb-3 ">
